@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Chart</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f9ff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0284c7;
+        }
+
+        h2 {
+            color: #0369a1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>BMI Calculator</h2>
+
+        <input type="number" id="height" placeholder="Enter height (cm)">
+        <input type="number" id="weight" placeholder="Enter weight (kg)">
+
+        <button onclick="calculateBMI()">Calculate</button>
+
+        <h3 id="result"></h3>
+        <p id="status"></p>
+    </div>
+
+<script>
+function calculateBMI() {
+    let h = document.getElementById("height").value / 100;
+    let w = document.getElementById("weight").value;
+
+    if (h === 0 || w === "") {
+        alert("Please enter valid values");
+        return;
+    }
+
+    let bmi = (w / (h * h)).toFixed(2);
+    document.getElementById("result").innerText = "Your BMI: " + bmi;
+
+    let message = "";
+
+    if (bmi < 18.5) {
+        message = "Underweight ❗ (Bad)";
+    } else if (bmi >= 18.5 && bmi < 25) {
+        message = "Normal ✅ (Good)";
+    } else if (bmi >= 25 && bmi < 30) {
+        message = "Overweight ⚠ (Not Good)";
+    } else {
+        message = "Obese 🚨 (Bad)";
+    }
+
+    document.getElementById("status").innerText = message;
+}
+</script>
+
+</body>
+</html>
